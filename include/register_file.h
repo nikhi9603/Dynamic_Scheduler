@@ -23,7 +23,7 @@ struct RegisterFile
     long long int PC;
     vector<Register> registers;
 
-    RegisterFile(int register_count) 
+    RegisterFile(int register_count=128) 
     {
         this->reg_count = register_count; 
         registers = vector<Register>(register_count, Register());

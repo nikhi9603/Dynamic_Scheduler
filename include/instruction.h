@@ -1,8 +1,10 @@
 #ifndef INSTRUCTION_H
 #define INSTRUCTION_H
 
-#include <utils.h>
-#include "unordered_map"
+#include<iostream>
+#include<unordered_map>
+#include "utils.h"
+using namespace std;
 
 enum Instruction_Stage {IF, ID, IS, EX, WB};
 
@@ -17,7 +19,7 @@ struct Instruction
     int instr_number;
     unordered_map<Instruction_Stage, Timer> timers;
 
-    Instruction(int instr_num=-1);
+    Instruction(int instr_num=-2);
     void print();
 };
 

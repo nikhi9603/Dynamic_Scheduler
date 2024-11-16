@@ -1,45 +1,16 @@
 CC = g++
-OPT = -O3
-#OPT = -g
-WARN = -Wall
-CFLAGS = $(OPT) $(WARN) $(INC) $(LIB)
 
-# List all your .cc files here (source files, excluding header files)
-SIM_SRC = proj_tomasulo.cpp
+srcDir := src/
+includeDir := include/
 
-# List corresponding compiled object files here (.o files)
-SIM_OBJ = proj_tomasulo.o
- 
-#################################
+srcfiles := main.cpp processor.cpp instruction.cpp rob.cpp trace.cpp utils.cpp 
+src_files := $(addprefix $(srcDir), $(srcfiles))
+executable_file := ooosim
 
-# default rule
+all: $(executable_file)
 
-all: ooosim
-	@echo "Done with make ..."
-
-
-# rule for making ooosim
-
-ooosim: $(SIM_OBJ)
-	$(CC) -o ooosim $(CFLAGS) $(SIM_OBJ) -lm
-	@echo "-----------DONE WITH OOOSIM-----------"
-
-
-# generic rule for converting any .cc file to any .o file
- 
-.cc.o:
-	$(CC) $(CFLAGS)  -c $*.cc
-
-
-# type "make clean" to remove all .o files plus the ooosim binary
+$(executable_file) : $(src_files)
+	$(CC) -g $^ -I $(includeDir) -o $@
 
 clean:
-	rm -f *.o ooosim
-
-
-# type "make clobber" to remove all .o files (leaves ooosim binary)
-
-clobber:
-	rm -f *.o
-
-
+	rm -f $(executable_file)

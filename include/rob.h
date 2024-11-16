@@ -11,17 +11,18 @@ class ROB
         int size,capacity;
         int head, tail;
         Counter tag_counter;
+        vector<bool> isValid_list;
 
-        bool isValidEntry(int idx);
     public:
         vector<Instruction> rob_list;
-        ROB(int capacity);
+        ROB(int capacity=4096);
 
         bool isFull();
         bool isEmpty();
+        bool isValidEntry(int idx);
 
-        bool addInstruction(Instruction instr);
-        pair<bool,Instruction> retireInstruction(Instruction instr);
+        pair<bool,int> addInstruction(Instruction instr);
+        void retireInstructions();
 };
 
 
